@@ -20,8 +20,8 @@ lesson. Then run these commands to set up the dependencies and set up the
 database:
 
 ```console
-$ bundle install
-$ bundle exec rake db:migrate
+bundle install
+bin/rake db:migrate
 ```
 
 In this application, we have a migration for one table, `games`:
@@ -101,14 +101,14 @@ common operation, we can also use a Rake task to run the code in this file. Run
 the Rake task now:
 
 ```console
-$ bundle exec rake db:seed
+bin/rake db:seed
 ```
 
 As long as there aren't any error messages, you won't see any output in the
 terminal. We can check if the operation succeeded by entering into the console:
 
 ```console
-$ bundle exec rake console
+bin/rake console
 ```
 
 And checking if the records were created:
@@ -139,8 +139,8 @@ Game.create(title: "Candy Crush Saga", platform: "Mobile", genre: "Puzzle", pric
 And running the seed file again, then checking the data in the console:
 
 ```console
-$ bundle exec rake db:seed
-$ bundle exec rake console
+bin/rake db:seed
+bin/rake console
 ```
 
 Let's see our updated data:
@@ -157,15 +157,15 @@ Game.count
 ```
 
 Hmm, we only added four games in the `db/seeds.rb` file: why are there now seven
-games in the database? Well, remember — every time we run `rake db:seed`, we are
-creating **new** records in the `games` table. There's nothing stopping our code
+games in the database? Well, remember — every time we run bin/rake db:seed`, we are
+creating **new** records in the`games` table. There's nothing stopping our code
 from producing duplicate data in the database. We're just instructing Active
 Record to create new code using this file!
 
 We can use another Rake command to [replant][] the seed data:
 
 ```console
-$ bundle exec rake db:seed:replant
+bin/rake db:seed:replant
 ```
 
 This command removes the data from all existing tables, and then re-runs the
@@ -173,7 +173,7 @@ seed file. It's handy if you want to start fresh! Just be cautious using this
 command, since it will delete all your existing data.
 
 We can now see our fresh database with just four records in the `games` table, as
-intended. Run `bundle exec rake console`:
+intended. Run `bin/rake console`:
 
 ```rb
 Game.count
@@ -188,7 +188,7 @@ realistic data, but the actual content is not so important.
 
 One tool that can be used to help generate a lot of realistic randomized data is
 the [Faker gem][faker]. This gem is already included in the Gemfile for this
-application, so we can try it out. Run `bundle exec rake console`, and try out
+application, so we can try it out. Run `bin/rake console`, and try out
 some Faker methods:
 
 ```rb
@@ -234,8 +234,8 @@ end
 puts "Done seeding!"
 ```
 
-Then, run `bundle exec rake db:seed:replant` to re-seed the database. Let's
-check out what random games were created with `bundle exec rake console`:
+Then, run `bin/rake db:seed:replant` to re-seed the database. Let's
+check out what random games were created with `bin/rake console`:
 
 ```rb
 Game.count
@@ -255,7 +255,7 @@ Great! Now we've got plenty of seed data to work with, and an easy way for
 ourselves or other developers to populate the database any time we need to do
 so.
 
-Run `learn test` now to pass the test and complete this lesson.
+Run `bin/rspec` now to pass the test and complete this lesson.
 
 ## Conclusion
 
